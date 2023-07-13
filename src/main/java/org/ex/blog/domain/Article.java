@@ -26,6 +26,9 @@ public class Article {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @Column(name = "photo")
+    private String photo;
+
     @Column(name = "category1", nullable = false)
     private String category1;
 
@@ -44,17 +47,20 @@ public class Article {
     private LocalDateTime updatedAt;
 
     @Builder
-    public Article(String title, String content, String category1, String category2) {
+    public Article(String title, String content, String category1, String category2, Long user_id, String photo) {
         this.title = title;
         this.content = content;
         this.category1 = category1;
         this.category2 = category2;
+        this.user_id = user_id;
+        this.photo = photo;
     }
 
-    public void update(String title, String content, String category1, String category2) {
+    public void update(String title, String content, String category1, String category2, String photo) {
         this.title = title;
         this.content = content;
         this.category1 = category1;
         this.category2 = category2;
+        this.photo = photo;
     }
 }
