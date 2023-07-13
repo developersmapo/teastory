@@ -9,7 +9,7 @@ if (deleteButton) {
         })
             .then(() => {
                 alert('삭제가 완료되었습니다.');
-                location.replace('/articles');
+                location.replace('/myblog');
             });
     });
 }
@@ -53,9 +53,12 @@ if (createButton) {
                 title: document.getElementById("title").value,
                 content: document.getElementById("content").value,
             }),
-        }).then(()=> {
+        }).then(() => {
             alert("등록 완료되었습니다.");
-            location.replace("./articles");
+            location.replace("/myblog");
+        }).catch((error) => {
+            console.error("등록 중 오류가 발생했습니다.", error);
         });
     });
+
 }

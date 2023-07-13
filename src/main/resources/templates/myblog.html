@@ -6,12 +6,10 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-<div class="p-5 mb-5 text-center bg-light" style=" display: flex;
-    justify-content: space-between; flex-direction: row;
-    align-items: baseline; gap: 5rem; height: 16rem;">
+<div class="p-5 mb-5 text-center bg-light" style="display: flex; justify-content: space-between; align-items: baseline; gap: 5rem; height: 16rem;">
   <h1 class="mb-3">블로그 이름</h1>
 
-  <div style="display: flex; align-items: center;  gap: 2rem;">
+  <div style="display: flex; align-items: center; gap: 2rem;">
     <form th:action="@{/search}" method="get">
       <input type="text" name="searchTerm" placeholder="검색어를 입력하세요">
       <button type="submit">검색</button>
@@ -20,17 +18,50 @@
       <img src="https://mblogthumb-phinf.pstatic.net/MjAyMzAyMDJfMTA5/MDAxNjc1MzE2NzQ2MzA5.TJXBYGX_1oyITKHclF3sgVYbhmv2DrdhVX3RAdG67UIg.33ZLprmyPkgtvzYJ8tii1E9jHunNtObQcK6_2lYBe_Qg.JPEG.susang66/qmf.jpg?type=w800" alt="프로필 이미지" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
       <p>사용자 이름(프로필)</p>
     </div>
-
   </div>
   <button type="button" class="btn btn-secondary" onclick="location.href='/config'">설 to the 정</button>
 </div>
-<div>
-  여기는 콘텐츠 리스트
 
-  <button type="button" class="btn btn-secondary" onclick="location.href='/article'">첫 블로그 포스팅 보기</button>
-</div>
-<div>
+<div class="container">
+  <button type="button" id="create-btn" onclick="location.href='/new-article'" class="btn btn-secondary btn-sm mb-3">글 등록</button>
 
+  <div style="display: flex;">
+    <div style="flex: 1;">
+      <!-- 콘텐츠 영역 -->
+      <div class="articleList">
+<!--        <div class="article" style="display: flex; margin: 3rem;" th:each="article : ${articles}">-->
+<!--          <img th:src="${article.imageUrl}" width="200px;">-->
+<!--          <div class="articleContent">-->
+<!--            <h1 th:text="${article.title}"></h1>-->
+<!--            <p th:text="${article.content}"></p>-->
+<!--            <button type="button" class="btn btn-secondary" th:onclick="|location.href='/articles/${article.id}'|">블로그 포스팅 보기</button>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="row-6" th:each="item : ${articles}">
+          <div class="card">
+            <div class="card-header" th:text="${item.id}">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title" th:text="${item.title}"></h5>
+              <p class="card-text" th:text="${item.content}"></p>
+              <a th:href="@{/articles/{id}(id=${item.id})}"
+                 class="btn btn-primary">보러 가기</a>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+    <div class="category" style="background-color: lightblue; width: 200px; height: 50vw;">
+      <!-- 카테고리 영역 -->
+      <h3>카테고리</h3>
+      <ul>
+        <li>카테고리 1</li>
+        <li>카테고리 2</li>
+        <li>카테고리 3</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <script src="/js/article.js"></script>
