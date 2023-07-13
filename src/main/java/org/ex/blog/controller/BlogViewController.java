@@ -44,7 +44,7 @@ public class BlogViewController {
             Article article = blogService.findById(id);
             model.addAttribute("article", new ArticleViewResponse(article));
         }
-        return "new-article"; // 수정된 부분: "new-article"로 변경
+        return "newArticle"; // 수정된 부분: "new-article"로 변경
     }
 
     @PostMapping("/new-article")

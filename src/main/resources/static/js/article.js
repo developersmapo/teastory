@@ -52,6 +52,7 @@ if (createButton) {
             body: JSON.stringify({
                 title: document.getElementById("title").value,
                 content: document.getElementById("content").value,
+                category1: " "
             }),
         }).then(() => {
             alert("등록 완료되었습니다.");
