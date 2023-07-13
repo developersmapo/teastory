@@ -6,14 +6,30 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-<div class="p-5 mb-5 text-center</> bg-light">
+<div class="p-5 mb-5 text-center bg-light" style=" display: flex;
+    justify-content: space-between; flex-direction: row;
+    align-items: baseline; gap: 5rem; height: 16rem;">
   <h1 class="mb-3">블로그 이름</h1>
-  <h4 class="mb-3">블로그에 오신 것을 환영합니다.</h4>
+
+  <div style="display: flex; align-items: center;  gap: 2rem;">
+    <form th:action="@{/search}" method="get">
+      <input type="text" name="searchTerm" placeholder="검색어를 입력하세요">
+      <button type="submit">검색</button>
+    </form>
+    <div style="width: 100px; height: 100px; border-radius: 50%;">
+      <img src="https://mblogthumb-phinf.pstatic.net/MjAyMzAyMDJfMTA5/MDAxNjc1MzE2NzQ2MzA5.TJXBYGX_1oyITKHclF3sgVYbhmv2DrdhVX3RAdG67UIg.33ZLprmyPkgtvzYJ8tii1E9jHunNtObQcK6_2lYBe_Qg.JPEG.susang66/qmf.jpg?type=w800" alt="프로필 이미지" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+      <p>사용자 이름(프로필)</p>
+    </div>
+
+  </div>
 </div>
 <div>
   여기는 콘텐츠 리스트
 
   <button type="button" class="btn btn-secondary" onclick="location.href='/article'">첫 블로그 포스팅 보기</button>
+</div>
+<div>
+
 </div>
 
 <script src="/js/article.js"></script>
