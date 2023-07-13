@@ -12,3 +12,6 @@ spring:
   sql:
     init:
       encoding: utf-8
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
