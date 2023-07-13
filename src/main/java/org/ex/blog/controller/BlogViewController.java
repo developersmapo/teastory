@@ -1,10 +1,14 @@
 package org.ex.blog.controller;
 
 import org.ex.blog.domain.Article;
+import org.ex.blog.domain.User;
+import org.ex.blog.domain.UserConfig;
 import org.ex.blog.dto.ArticleViewResponse;
 import org.ex.blog.dto.ArticleListViewResponse;
 import org.ex.blog.service.BlogService;
 
+import org.ex.blog.service.UserConfigService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +22,7 @@ import java.util.stream.Collectors;
 public class BlogViewController {
 
     private final BlogService blogService;
+    private final UserConfigService userConfigService;
 
     @GetMapping("/myblog")
     public String getArticles(Model model) {
@@ -37,8 +42,13 @@ public class BlogViewController {
     }
 
     @GetMapping("/new-article")
-    public String newArticle(@RequestParam(required = false) Long id, Model model) {
+    public String newArticle(@RequestParam(required = false) Long id, Model model, @AuthenticationPrincipal User user) {
+
         if (id == null) {
+            // 로그인한 사용자의 카테고리 목록 불러오기
+            List<UserConfig> categories = userConfigService.getConfigList(user.getId(), "category");
+
+            model.addAttribute("categoryList", categories);
             model.addAttribute("article", new ArticleViewResponse());
         } else {
             Article article = blogService.findById(id);

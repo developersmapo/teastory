@@ -14,15 +14,14 @@ public class AddArticleRequest {
     private String content;
     private String category1;
     private String category2;
-    private Long user_id;
     private String photo;
 
-    public Article toEntity() {
+    public Article toEntity(Long id) {
         return Article.builder().title(title)
                 .content(content)
                 .category1(category1)
                 .category2(category2)
-                .user_id(user_id)
+                .user_id(id)
                 .photo(photo)
                 .build();
     }

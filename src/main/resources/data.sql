@@ -1,2 +1,2 @@
 insert into users (email, password) values ('user@user.com', '$2a$10$pBvKl26vyvYoELA4XcXkC.HttpBiQyyisjkUpIDtRSup7AvHZa3PW')
-insert into userconfig (id, arrangement) values (1, '')
+insert into userconfig (`id`, `name`, `code`, `val`) values (1, 'category', '0', '카테고리없음')
