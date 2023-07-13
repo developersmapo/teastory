@@ -26,4 +26,6 @@ public class AddArticleRequest {
                 .photo(photo)
                 .build();
     }
+
+    // 서비스
 }
