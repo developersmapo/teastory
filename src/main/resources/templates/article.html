@@ -10,14 +10,18 @@
     <h1 class="mb-3">블로그 이름</h1>
     <h4 class="mb-3">블로그에 오신 것을 환영합니다.</h4>
 </div>
-<div class="content-title">
-    <h3>카테고리명</h3>
-    <h2>포스트 제목</h2>
-    <h4>닉네임</h4>
+
+<div class="content-title" style="border-style: solid; padding: 2rem">
+    <h3 id="categoryLabel"></h3>
+    <h3 th:text="${article.category1}"></h3>
+    <h2 th:text="${article.title}"></h2>
+    <h4 th:text="${article.id}"></h4>
     <div class="text-muted fst-italic mb-2" th:text="|Posted on ${#temporals.format(article.createdAt, 'yyyy-MM-dd HH:mm')}|"></div>
 </div>
-<div class="content">
-    <h1>콘텐츠 입니다</h1>
+
+<div class="article-container" style="display: flex;">
+<div class="content" style="width: 90%; border-style: solid; padding: 2rem" >
+    <p>콘텐츠 영역</p>
     <p class="fs-5 mb-4" th:text="${article.content}"></p>
     <button type="button" id="modify-btn"
             th:onclick="|location.href='@{/new-article?id={articleId}(articleId=${article.id})}'|"
@@ -25,11 +29,51 @@
     <button type="button" id="delete-btn"
             class="btn btn-secondary btn-sm">삭제</button>
 </div>
-<nav>
-    <h2>카테고리</h2>
-</nav>
 
+<div class="category" style="background-color: lightblue; width: 10%; height: 50vw;">
+    <!-- 카테고리 영역 -->
+    <h3>카테고리</h3>
+    <ul>
+        <li>카테고리 1</li>
+        <li>카테고리 2</li>
+        <li>카테고리 3</li>
+    </ul>
+</div>
+
+
+</div>
+<div class="card">
+    <div class="card-body" style="display: flex;
+    padding: 1.25rem;
+    justify-content: space-between;">
+        <textarea id="comment-input" class="form-control" row="1">댓글창</textarea>
+        <input id="author-input" class="form-control" type="text" placeholder="작성자" style="width: 7rem; ">
+        <div class="card-footer" style="display: flex; justify-content: flex-end;">
+            <button id="submit-button" class="btn btn-primary">등록</button>
+        </div>
+    </div>
+</div>
+<div class="card" style="padding: 1.25rem;">
+    <div class="card-header">댓글 리스트</div>
+    <ul id="comment-box" class="list-group">
+        <li id="comment-1" class="list-group-item d-flex justify-content-between">
+            <div>댓글 내용입니다.</div>
+            <div class="d-flex">
+                <div class="font-italic">작성자: 김OO</div>
+                <button class="badge" onclick="deleteComment('comment-1')">삭제</button>
+            </div>
+        </li>
+    </ul>
+</div>
 
 <script src="/js/article.js"></script>
+<script th:inline="javascript">
+    function updateCategory() {
+        const categorySelect = document.getElementById("categorySelect");
+        const selectedCategory = categorySelect.value;
+        const categoryLabel = document.getElementById("categoryLabel");
+        categoryLabel.innerText = selectedCategory;
+    }
+</script>
 </body>
 </html>

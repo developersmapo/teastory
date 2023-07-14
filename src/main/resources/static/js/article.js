@@ -52,7 +52,7 @@ if (createButton) {
             body: JSON.stringify({
                 title: document.getElementById("title").value,
                 content: document.getElementById("content").value,
-                category1: " "
+                category1: document.getElementById("categorySelect").value,
             }),
         }).then(() => {
             alert("등록 완료되었습니다.");
@@ -62,4 +62,50 @@ if (createButton) {
         });
     });
 
+}
+
+
+
+// 댓글 등록 버튼 클릭 이벤트 처리
+var submitButton = document.getElementById('submit-button');
+submitButton.addEventListener('click', function () {
+    addComment();
+});
+
+// 댓글 추가 함수
+function addComment() {
+    var commentInput = document.getElementById('comment-input');
+    var commentText = commentInput.value;
+
+    if (commentText.trim() === '') {
+        return;
+    }
+
+    var authorInput = document.getElementById('author-input');
+    var authorName = authorInput.value.trim() || '익명';
+
+    var commentBox = document.getElementById('comment-box');
+    var commentId = 'comment-' + (commentBox.childElementCount + 1);
+
+    var newComment = document.createElement('li');
+    newComment.setAttribute('id', commentId);
+    newComment.setAttribute('class', 'list-group-item d-flex justify-content-between');
+    newComment.innerHTML = `
+            <div>${commentText}</div>
+            <div class="d-flex">
+                <div class="font-italic">작성자: ${authorName}</div>
+                <button class="badge" onclick="deleteComment('${commentId}')">삭제</button>
+            </div>
+        `;
+
+    commentBox.appendChild(newComment);
+
+    commentInput.value = '댓글창'; // 댓글 입력창 초기화
+    authorInput.value = ''; // 작성자 입력창 초기화
+}
+
+// 댓글 삭제 함수
+function deleteComment(commentId) {
+    var comment = document.getElementById(commentId);
+    comment.parentNode.removeChild(comment);
 }
