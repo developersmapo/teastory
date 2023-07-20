@@ -11,7 +11,9 @@
     <h4 class="mb-3">블로그에 오신 것을 환영합니다.</h4>
 </div>
 
-<div class="content-title" style="border-style: solid; padding: 2rem">
+<div class="container">
+<div class="content-title" style=
+        "border-bottom: ridge; padding: 2rem">
     <h3 id="categoryLabel"></h3>
     <h3 th:text="${article.category1}"></h3>
     <h2 th:text="${article.title}"></h2>
@@ -20,7 +22,7 @@
 </div>
 
 <div class="article-container" style="display: flex;">
-<div class="content" style="width: 90%; border-style: solid; padding: 2rem" >
+<div class="content" style="width: 90%; padding: 2rem" >
     <p>콘텐츠 영역</p>
     <p class="fs-5 mb-4" th:text="${article.content}"></p>
     <button type="button" id="modify-btn"
@@ -64,6 +66,7 @@
             </div>
         </li>
     </ul>
+</div>
 </div>
 
 <script src="/js/article.js"></script>

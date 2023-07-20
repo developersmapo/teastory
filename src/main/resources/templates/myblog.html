@@ -39,13 +39,16 @@
 <!--        </div>-->
         <div class="row-6" th:each="item : ${articles}">
           <div class="card">
-            <div class="card-header" th:text="${item.id}">
+            <div class="card-header" th:text="${item.category1}">
+              <h4 th:text="${item.category1}"></h4>
             </div>
             <div class="card-body">
               <h5 class="card-title" th:text="${item.title}"></h5>
+
               <p class="card-text" th:text="${item.content}"></p>
               <a th:href="@{/articles/{id}(id=${item.id})}"
                  class="btn btn-primary">보러 가기</a>
+<!--              <img th:src="${item.photo}" alt="Article Photo">-->
             </div>
           </div>
           <br>
@@ -53,12 +56,9 @@
       </div>
     </div>
     <div class="category" style="background-color: lightblue; width: 200px; height: 50vw;">
-      <!-- 카테고리 영역 -->
       <h3>카테고리</h3>
       <ul>
-        <li>카테고리 1</li>
-        <li>카테고리 2</li>
-        <li>카테고리 3</li>
+        <li th:each="category : ${categories}" th:text="${category}"></li>
       </ul>
     </div>
   </div>

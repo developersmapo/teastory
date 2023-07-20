@@ -7,10 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Table(name = "userconfig")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor()
 @Getter
 @Entity
 public class UserConfig {
+
+
     @Id
     @Column(name = "id", updatable = false)
     private Long id;
@@ -30,5 +32,12 @@ public class UserConfig {
         this.name = name;
         this.code = code;
         this.val = val;
+
+    }
+
+    public void setValue(String categoryName) {
+    }
+
+    public void setType(String category) {
     }
 }
